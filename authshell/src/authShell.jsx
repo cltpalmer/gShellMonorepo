@@ -41,7 +41,7 @@ export default function AuthForm() {
   
       if (json.success) {
         console.log("✅ Session stored, redirecting...");
-      window.location.href = `https://gshellterminal.netlify.app/`;
+      window.location.href = `https://terminal.gshell.cloud`;
       } else {
         alert(json.message || "Login failed");
       }
