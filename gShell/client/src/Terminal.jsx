@@ -27,7 +27,8 @@ export default function Terminal({ isDark, setIsDark, toggleCommandOverlay }) {
   
   const welcomedRef = useRef(false); // 🚫 No double greetings
   const logRef = useRef(null);
-  const baseURL = "https://gshell.cloud";
+
+ const baseURL = "https://api.gshell.cloud";
 
 
   async function getSession() {
