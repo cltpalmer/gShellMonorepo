@@ -7,7 +7,7 @@ import removeSheetIcon from '../assets/removeSheet.svg';
 import uploadApp from '../assets/uploadapp.svg';
 import appIcon from '../assets/appIcon.svg';
 
-import ConfirmOverlay from '../Overlays/confirmOverlay';
+import ConfirmOverlay from '../Overlays/ConfirmOverlay';
 import '../styles/appSheets.css';
 
 export default function AppSheets() {
