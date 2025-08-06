@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Welcome to Creative League</title>
+  </head>
+  <body style="font-family: sans-serif; padding: 20px;">
+    <h2>Welcome, {{username}} 👋</h2>
+    <p>You’ve successfully joined the league!</p>
+    <p>Battle name: <strong>{{battleName}}</strong></p>
+    {{#if prize}}
+      <p>Prize: <strong>${{prize}}</strong></p>
+    {{/if}}
+
+    <p>We’ll keep you updated on your next match.</p>
+    <p>Let’s create greatness,</p>
+    <p>— The Creative League Team</p>
+  </body>
+</html>

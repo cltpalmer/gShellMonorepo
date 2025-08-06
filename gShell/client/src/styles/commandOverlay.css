@@ -1,0 +1,124 @@
+
+.command-overlay {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+    font-family: 'Poppins', sans-serif;
+  }
+  .modal-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    max-width: 90vw;
+    width: 60% !important;
+    height: 88% !important;
+    position: relative;
+  }
+  .command-modal {
+    background: rgb(36, 36, 36);
+    color: rgb(255, 255, 255);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    width: 100% !important;
+    height: 100% !important;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll !important;
+    overflow: hidden;
+  }
+  .command-modal::-webkit-scrollbar {
+    width: 8px;              /* Make it thin */
+    background: transparent; /* No track background */
+    height: 80%;
+    margin-right: 1rem;
+  }
+  
+  .command-modal::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2); /* Light thumb */
+    border-radius: 6px;
+  }
+  
+  .command-modal::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.4); /* On hover */
+  }
+  
+  
+  
+  .modal-close {
+    font-size: 0.9rem;
+    color: rgb(255, 255, 255);
+    background-color: #030303 !important;
+    padding: 0.5rem 2rem;
+    border-radius: 999px;
+    font-weight: bold;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-left: auto;
+
+  }
+  
+  .command-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .command-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+/* From https://css.glass */
+background: rgba(0, 255, 142, 0.54);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(0, 255, 142, 0.3);
+  }
+  
+  .big-word {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000000; /* dark gray */
+    white-space: nowrap;
+  }
+  
+  .small-words {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .tag {
+    padding: 0.4rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  
+  /* Background color themes */
+  .bg-blue   { background-color: #dbeafe; }
+  .bg-green  { background-color: #d1fae5; }
+  .bg-yellow { background-color: #fef3c7; }
+  .bg-orange { background-color: #ffedd5; }
+  
+  /* Text color themes */
+  .text-dark { color: #000000; }
+  

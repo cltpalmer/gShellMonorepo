@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "creativeleagueapp",
+  "private_key_id": "f3e3df09962b3dba76467b9a911d4ca749523662",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/fwFf2sRmnMLQ\nboKFRckAhDHio1+72tpjap68gq9TWwKfA1qEsUbCh5pT3KWDLXPvl7QHSyZY+cu6\nyOrnRTG2fnqu5aCTuoUmnzzyMBjseXKKt5H4pi9F6ItoKPdMN2Ltgj2Sbc5jXVQ1\nY22WOFgqORhr58i//qtpUkzZVlpbDfpTkmTzj6AhQNzN1VfZFjhnxZlGwA7fV8hC\nSQB4zJjP8XlzsYsBCHX1H328zsErTZiAr5//VY+kqiIoo3Yp1VU9G6/3Bmqzd5hN\njcurqMmlzyDIXvD2WHx9T0EZk3zYlOrEqD+/o5BweajPh3b0pajQCYgm6SvsvJ2O\nUvh+feejAgMBAAECggEABb473tGTUVaDOzgNPwz8PcE5M8hdjyc9pHymnRW4R2Iz\n3mv903vzmNLzTG+SITCESRu+IPfegw2e0A/Fh8EaABSj/knRuox+AM4GyGar4K+1\nwTZHMPNe+JREVg/gds80btYYnaMgbPd4Fo/QUhCHiGCk/Ft7uFJddq+qsVv3IsLn\nxim5WE5T1764fHkMYQiBcVQVXKw/CKgQJSS7Pq6YoiIDS5/R/Fd5gLUA/dYIxqRE\nppOlNqwG9VIKetpso8YlTIMTHJZV7tL46znCd6lAxbFsy8WwCTbf/7/ZC6iTwKT/\nz9jiSJb+CNsPfyxWMzsySutoiUaJlrMgjz5WJ/rz8QKBgQDhOby7OOsy45URQf9v\nnWSwjJGLRK028THmnTBcSM52LvgCTXUMG5hzcEmPj6DRmrAHh6LUQDdTwEBfN/T5\n659HBPCRz+7X1Rn5EnPeDLYgclSFYG8EGC4tTD72db4GRH2RHIERmbghrsfyP3FJ\nPtJUL6jJNLN/69WR8HulDcTOswKBgQDZqW6SWItFDOKp+4SFsN2OppSK8ky2FCrb\nTRDGpiWwcAw69R5DnOUv4t96RxhdiQ4xEPoRUnYA2F2LVq1hD4uu7GGcJTXae8gA\nf9kroPAhOwHvUwjkesxwUsCbdQ8skcdzEzC8guFB114t1qMOkorHrzMqT4WYkNy4\n3JGG2LX7UQKBgQC6DhM96qBJUr3jGs0j7Dawrf7RuLMKzyc05id8JN0Bvn08kbYe\ngXFn85uhD7p/TLUcE01M35uVAR1sS3KBPsc+SPNe0RHylGU3X6n+BiwyE6CE6gvr\nqvoCi5j7ynpm/Q9p380zt/PnR1Z/ZS91nYLs7s4VIQcjprOwMqRBzmUFhwKBgAbi\nhh3Y8SbQ/oZz70AvVQLDICW4/lYwEx72tBYkgUKweKKQyFFJMDKwkXMTtqCWyj0h\nFVfg7Nyf+22B42ATls6EqZ2/y5FKowvo/1yS7aWPcUM5tClN/RN8ep0wObemMNHi\nBIOh/DAR+OeoR2YZmowwbYTkGQy3YFP0niHOzwrRAoGAZElUqag2xMl+5yIK/K0D\nlpxZs98m8NtuavXc8wMd5Bk79dsbZsicCiv/cD9njMT2luKgXZSMS3eN5JVQpowv\nOoMV/ejpetV5kEgzIJwAXudo2nbswI20KSeiPEnxMNoXHhVpCyN0J3PQKI2I/N0V\nxOKNWOZsuHX+BSt/HCZWoQA=\n-----END PRIVATE KEY-----\n",
+  "client_email": "creativeleague@creativeleagueapp.iam.gserviceaccount.com",
+  "client_id": "101210895109989926250",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/creativeleague%40creativeleagueapp.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

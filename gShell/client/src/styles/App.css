@@ -1,0 +1,27 @@
+/* Reset + root sizing */
+#root {
+  display: flex;
+  justify-content: center;   /* horizontal */
+  align-items: center;       /* vertical */
+}
+
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* full vertical height */
+  width: 100vw;  /* full horizontal width */
+  overflow: hidden; /* optional: prevent scrollbars */
+}
+
+/* Optional: give it a background to test */
+body {
+  background: #ffffff;
+}
+body.dark {
+  background-color: #121212;
+}
+
+body.light {
+  background-color: #ffffff;
+}

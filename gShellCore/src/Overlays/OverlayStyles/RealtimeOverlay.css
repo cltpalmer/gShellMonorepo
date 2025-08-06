@@ -1,0 +1,15 @@
+select {
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+  .RealtimeOverlay-field {
+    margin-bottom: 1rem;
+  }
+  
+  .RealtimeOverlay-field input {
+    width: 100%;
+    padding: 6px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+    

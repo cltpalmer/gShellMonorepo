@@ -1,0 +1,297 @@
+/* Add body reset at the top */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+.create-template-wrapper {
+    height: 100%;
+    width: 100%;
+    background: #1a1a1a;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .content-width {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 75%;
+    justify-content: center;
+    align-items: center;
+    max-width: calc(100% - 80px); /* Account for shadows */
+  }
+  
+  .create-box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: #000;
+    border-radius: 18px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box; /* Include padding in height calculation */
+  }
+  
+  .template-header-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 20%;
+    text-align: center !important;
+  }
+
+  .subject-line-wrapper {
+    display: flex;
+    align-items: center;
+    color: #ffffff;    
+    text-align: center !important;
+    width: 50%;
+    height: 100%;
+    text-transform: lowercase;
+    justify-content: center;
+  }
+  
+  .subject-line { 
+    display: flex;
+    width: 60%;
+    outline: none; 
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    background: rgba(0, 255, 112, 0.55);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 255, 112, 0.3);
+    color: #ffffff;
+    height: 70%;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: lowercase;
+    box-sizing: border-box;
+  }
+  
+  .subject-line::placeholder {
+    font-family: 'Poppins', sans-serif;
+    text-transform: lowercase;
+    color: #ffffff7e;
+    text-align: center;
+  }
+  
+  .create-title-wrapper {
+    display: flex;
+    align-items: center;
+    color: #ffffff;    
+    text-align: left;
+    width: 50%;
+    height: 100%;
+    text-transform: lowercase;
+    justify-content: center;
+  }
+  
+  .create-template-title {
+    display: flex;
+    width: 60%;
+    outline: none; 
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    background: rgba(0, 255, 112, 0.55);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 255, 112, 0.3);
+    color: #ffffff;
+    height: 70%;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: lowercase;
+    box-sizing: border-box;
+  }
+
+  .create-box-whole {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 85%;
+    width: 100%;
+    gap: 20px;
+  }
+  
+  .raw-editor-wrapper {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Removed all redundant align/justify properties */
+  }
+  
+  .raw-editor {
+    width: 100%;
+    font-size: 18px;
+    font-family: monospace;
+    background-color: #ffffff11;
+    color: #fff176;
+    border-radius: 12px;
+    border: none;
+    resize: vertical;
+    outline: none;
+    line-height: 1.6;
+    height: 100%;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    padding: 12px; /* Add some padding for better UX */
+  }
+  
+  .create-preview-wrapper {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Removed redundant properties */
+  }
+  
+  .create-preview-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+ 
+  .create-template-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 0.75rem;
+    background-color: #000000;
+    color: #00ff62;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.3s ease;
+    z-index: 10;
+    text-transform: lowercase;
+    font-weight: bold;
+  }
+  
+  .create-template-btn:hover {
+    background-color: #00ff7300;
+    color: #00ff73;
+    border: 2px solid #00ff73;
+  }
+
+  .section-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 15%;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .tool-btn-wrapper {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-radius: 30px;
+    z-index: 1000;
+  }
+  
+  .variable-dropdown{
+    background-color: transparent;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    text-transform: lowercase;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-weight: 400;
+  }
+  
+  .format-btn,
+  .dropdown-container {
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 1px;
+    background: rgb(0, 0, 0);
+    padding: 6px 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    outline: none;
+    border: none;
+    color: #ffffff;
+    border-radius: 36px;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    text-transform: lowercase;
+    width: auto;
+    line-height: 1;
+  }
+  
+  .format-btn:hover,
+  .variable-dropdown:hover {
+    background-color: #2a2a2a;
+  }
+  
+  .dropdown-container {
+    position: relative;
+    display: flex;
+    color: #ffffff;
+  }
+  
+  .variable-dropdown-options {
+    position: absolute;
+    bottom: 110%;
+    left: 0;
+    z-index: 1000;
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .variable-dropdown-option {
+    padding: 5px 5px;
+    cursor: pointer;
+    color: #fff176;
+    font-family: 'Poppins', sans-serif;
+    transition: background 0.2s;
+    font-size: 0.6rem;
+  }
+  
+  .variable-dropdown-option:hover {
+    background-color: #2a2a2a;
+  }

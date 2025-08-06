@@ -1,0 +1,191 @@
+/* LeftNavbar.css */
+
+* {
+    box-sizing: border-box;
+  }
+
+  .whole-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 10%;
+    height: 100%;
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+  }
+
+  .right-navbar {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-between;
+padding: 15px 0px;
+width: 50%;
+height: 100%;
+background-color: transparent;
+position: relative;
+  }
+  
+
+  
+  
+  .exit-btn img {
+    width: 20px;
+    height: auto;
+}
+
+  
+  .exit-btn:hover {
+    background: rgba(43, 43, 43, 0.8) !important;
+    transform: scale(1.05) !important;
+  }
+  .exit-btn {
+    display: flex;
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center;
+    justify-content: center;
+    background: rgb(0, 0, 0);
+    border-radius: 5px; 
+    padding: 5px;
+    border: 1px solid #00ffb7;
+    cursor: pointer;
+    gap: 2px; /* Small gap between image and text */
+  }
+  
+  .exit-btn span {
+    color: white;
+    font-size: 10px; /* Small text size */
+    font-weight: 500;
+    text-transform: lowercase;
+    letter-spacing: 0.5px;
+    font-family: 'Poppins', sans-serif;
+  }
+    
+  
+  .show-navbar-btn-icon {
+    display: flex;
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center;
+    justify-content: center;
+    background: rgb(0, 0, 0);
+    border-radius: 5px; 
+    padding: 5px;
+    border: 1px solid #00ffb7;
+    cursor: pointer;
+    gap: 2px; /* Small gap between image and text */
+  }
+  
+  .show-navbar-btn-icon span {
+    color: white;
+    font-size: 10px; /* Small text size */
+    font-weight: 500;
+    text-transform: lowercase;
+    letter-spacing: 0.5px;
+    font-family: 'Poppins', sans-serif;
+  }
+
+.show-navbar-btn-icon img {
+    width: 20px;
+    height: auto;
+}
+  .show-navbar-btn-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+  }
+
+  .left-navbar {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* ✅ This centers the icons vertically */
+    align-items: center;
+  
+    overflow: hidden;
+    padding: 0;
+  }
+  
+
+  .left-navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 13px;
+  }
+  
+
+.left-navbar li {
+  margin-bottom: 23px;
+}
+
+.left-navbar li a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+    padding: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.left-navbar li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.nav-icon {
+    width: 24px;
+    height: 24px;
+}
+.nav-icon-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  .nav-icon-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+  }
+
+/* The gradient bar itself */
+.gradient-border {
+    position: absolute; /* Position relative to .left-navbar */
+    top: 0;
+    right: 0; /* Align to the right edge of the navbar */
+    width: 1px; /* The thickness of the bar */
+    height: 100%; /* Full height of the navbar */
+    background: linear-gradient(
+      to bottom,
+      #00ff6a,
+      #00ccff,
+      #00ff6a
+    );
+    background-size: 100% 300%; /* Make gradient taller to flow */
+    animation: flowBorder 4s linear infinite;
+    border-radius: 3px;
+    z-index: 100000; /* Ensure it's above other elements if needed */
+}
+
+@keyframes flowBorder {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: 0% 100%;
+    }
+}

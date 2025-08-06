@@ -1,0 +1,26 @@
+.smart-input-wrapper {
+    position: relative;
+    width: 100%;
+  }
+  
+  .smart-input-field {
+    width: 100%;
+    padding: 4px 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    border: 2px solid #007bff;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  .smart-input-field:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+  }
+  
+  .smart-input-field:hover {
+    border-color: #3399ff;
+    background-color: #f8fbff;
+  }
+  

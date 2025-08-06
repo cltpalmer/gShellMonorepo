@@ -1,0 +1,25 @@
+/* toast.css */
+.simple-toast {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    padding: 1rem 1.5rem;
+    border-radius: 48px;
+    color: rgb(17, 79, 49);
+    font-weight: 500;
+    background-color: #2fff89; /* info default */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 9999;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    text-transform: lowercase;
+  }
+  
+  .simple-toast.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  

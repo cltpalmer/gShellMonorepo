@@ -1,0 +1,268 @@
+.app-sheets-page {
+    font-family: 'Poppins', sans-serif !important;
+    background: #111111;
+    min-height: 100vh;          /* Make sure it takes full screen height */
+    width: 100%;
+    overflow-y: auto;           /* Allow vertical scroll */
+    padding: 1rem 1rem;         /* Space for top title */
+    display: block;            /* Block layout to avoid flex cutting content */
+}
+.app-sheets-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 70%;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #111111;
+    font-family: 'Poppins', sans-serif !important;
+}
+  
+.app-sheets-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    align-self: center;
+    padding: 0;                   /* ✅ remove padding */
+    margin: 0;   
+    width: 100%;
+    height: auto; /* 👈 Let it shrink-wrap to content */
+    background: #111111;
+    font-family: 'Poppins', sans-serif !important;
+}
+.app-sheets-title-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    padding: 0;                   /* ✅ remove padding */
+    margin: 0;                    /* ✅ remove margin */
+    width: 100%;
+    height: auto;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    background: #111111;
+    font-family: 'Poppins', sans-serif !important;
+    
+}
+.app-sheets-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: rgba(0, 255, 173, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(0, 255, 173, 0.3);
+}
+.app-sheets-icon {
+    display: flex;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.app-sheets-icon-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.2s ease;
+}
+.app-sheets-icon-hover img {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+} 
+.app-sheets-icon-hover:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+.app-sheets-title {
+    font-size: 1.6rem;
+    color: #00ff84;
+    background: rgba(0, 255, 173, 0.2);
+    border-radius: 56px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 255, 173, 0.3);
+    padding: 1rem 3rem;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif !important;
+}
+.app-sheets-controls-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    gap: 0.5rem;
+    padding: 0;                   /* ✅ remove padding */
+    margin: 0;                    /* ✅ remove margin */
+    width: 100%;
+    height: 40%;
+    margin-bottom: 1.5rem;
+    background: #111111;
+    font-family: 'Poppins', sans-serif !important;
+    padding: 1rem 0;
+}
+.app-sheets-row-sheet-btn {
+    font-family: 'Poppins', sans-serif !important;
+    background: #005a3074;
+    color: #00ff8096;
+    border-radius: 34px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif !important;
+    font-size: .5rem;
+    padding: .5rem 2.5rem;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    text-transform: lowercase;
+    transition: all 0.2s ease;
+}
+.app-sheets-row-sheet-btn:hover {
+    text-transform: scale(1.02);
+    color: #ffffff;
+}
+.app-sheets-list {
+    list-style: none;
+    font-family: 'Poppins', sans-serif !important;
+    width: 100%;
+    min-height: 70%;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}
+.sheet-list-item {
+    display: flex;
+    position: relative;
+    background: rgba(0, 255, 173, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 255, 173, 0.3);
+    padding: 1.5rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+    transition: transform 0.2s ease;
+}
+.sheet-list-item:hover {
+    transform: translateY(-2px);
+}
+.sheet-name {
+    font-weight: bold !important;
+    color: #ffffff !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 1rem!important;
+}
+.removeSheetBtn {
+    position: absolute;
+    display: flex;
+    top: -1rem;
+    right: -1rem;
+    flex: 1;
+    align-self: center;
+    justify-self: center;
+    align-items: center;
+    justify-content: center;
+    background: #ff0202c3;
+    color: #00ff8096;
+    border-radius: 34px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif !important;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    text-transform: lowercase;
+    padding: .5rem .5rem;
+}
+.removeSheetBtn img {
+    width: 18px;
+    height: 18px;
+}
+.view-link {
+    text-decoration: none;
+    color: #1a1a1a;
+    background: #00ff80;
+    padding: 0.5rem 1.2rem;
+    border-radius: 34px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif !important;
+    transition: all 0.2s ease;
+    margin-top: 1rem;
+    text-align: center;
+    width: 80%;
+}
+.view-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 255, 128, 0.3);
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.modal-box {
+    background: #1c1c1c;
+    padding: 1.5rem;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 0 12px rgba(255,255,255,0.1);
+}
+.modal-box input {
+    width: 100%;
+    margin: 1rem 0;
+    padding: 0.6rem;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+}
+.modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+}
+.modal-buttons button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #00c2ff;
+    color: #000;
+    font-weight: bold;
+}
+  

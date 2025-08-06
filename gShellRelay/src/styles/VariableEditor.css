@@ -1,0 +1,148 @@
+/* Contained inside of rightSide from App.jsx */
+
+.variable-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.variable-title-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 25%;
+  font-family: 'Poppins', sans-serif;
+}
+
+.variable-title {
+  background-color: #161616;
+  color: white;
+  padding: 18px 35px;
+  border-radius: 38px;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: lowercase;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.variable-group-wrapper {
+  display: flex;
+  width: 100%;
+  height: 75%;
+  overflow-y: auto;
+  scrollbar-width: thin;                /* Firefox */
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  gap: 10px;
+  flex-direction: column;
+  /* From https://css.glass */
+  background: #1F1F1F;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.variable-group {
+  font-family: 'Poppins', sans-serif;
+  scrollbar-width: thin;                /* Firefox */
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  gap: 15px;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  font-size: 1rem;
+  border-radius: 12px;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+
+.variable-group::-webkit-scrollbar {
+  width: 8px;
+}
+
+.variable-group::-webkit-scrollbar-track {
+  background: transparent;              /* Removes that white botchy bg */
+}
+
+.variable-group::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3); /* Smooth semi-light bar */
+  border-radius: 8px;
+}
+
+.variable-group::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.5); /* Slightly stronger on hover */
+}
+
+/* Input wrapper for dropdown positioning */
+.var-input-wrapper {
+  position: relative;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.variable-group input {
+  width: 70%;
+  height: 10px;
+  padding: 12px 16px;
+  border-radius: 26px;
+  background-color: var(--var-color, #76e5ff); /* fallback if missing */
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  text-transform: lowercase;
+  border: 2px solid var(--var-color, #76e5ff); /* fallback if missing */
+  outline: none;
+  box-sizing: border-box;
+  text-wrap: ellipsis;
+}
+
+.variable-group input::placeholder {
+  color: #000000b4;
+  opacity: 1;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+}
+
+.variable-group input,
+.variable-group input::placeholder {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+/* Dropdown styling */
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 1000;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-list li {
+  padding: 8px 16px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+}
+
+.dropdown-list li:hover {
+  background-color: #f0f0f0;
+}

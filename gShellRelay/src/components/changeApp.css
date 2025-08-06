@@ -1,0 +1,30 @@
+.change-app{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 30px;
+    left: 10%;
+    width: 30%;
+    height: 10%;
+    }
+.change-app-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    color: white;
+    border: none;
+    border-radius: 3rem;
+    cursor: pointer;    
+    padding-right: 1rem;
+    transition: background 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    font-family: 'Poppins', sans-serif;
+}
+.change-app-btn:hover {
+    background: #222;
+}

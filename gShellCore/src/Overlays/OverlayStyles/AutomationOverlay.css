@@ -1,0 +1,232 @@
+.automation-overlay-container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 800px;
+  border: 1px solid #48ff00;
+}
+.cancel-btn {
+    display: flex;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    text-transform: lowercase;
+    height: 7%;
+    cursor: pointer;
+    border-radius: 24px;
+    padding: 5px 12px;
+    outline: none;
+    border: none;
+    font-weight: bold;
+}
+
+
+/* Automation Logic Builder */
+.automation-logic-builder {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    height: 20%;
+    gap: 10px;
+    padding: 1rem;
+    background: #fffdf9;
+    border: 1px solid #d5d5d5;
+    border-radius: 16px;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+}
+.logic-label {
+    font-weight: 600;
+    color: #222;
+    background: #e4e4e4;
+    padding: 4px 10px;
+    border-radius: 18px;
+    font-size: 0.9rem;
+} 
+  .pill-input {
+    border: none;
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.9rem;
+    background: #00ffcc1f;
+    outline: none;
+    font-weight: 500;
+    color: #222;
+}
+.action-select {
+    background: #000;
+    color: #00ff90;
+    border-radius: 24px;
+    padding: 5px 12px;
+}
+  .value-mode {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+  
+
+
+/* Also Include Section */
+.also-include-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 1rem;
+    width: 90%;
+    height: 20%;
+    border: 1px solid #ff0606;
+    gap: 0.5rem;
+}
+.include-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 20%;
+    border: 1px solid #06ffc5;
+    gap: 0.5rem;
+}
+.include-header h4 {
+    font-weight: 600;
+    color: #222;
+    background: #e4e4e4;
+    padding: 4px 10px;
+    border-radius: 18px;
+    font-size: 0.9rem;
+}
+.include-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 20%;
+    border: 1px solid #06ffc5;
+    gap: 0.5rem;
+}
+.include-row span {
+    color: #222;
+}
+.include-remove-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7%;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 24px;
+    padding: 5px 12px;
+    outline: none;
+    border: none;
+}
+.include-add-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+    background: #000;
+    color: #00ff90;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border-radius: 24px;
+    padding: 5px 12px;
+    outline: none;
+    border: none;
+}
+.add-include-btn:hover {
+    transform: scale(1.02);
+}
+
+
+/* Match Options */
+.match-options {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 20%;
+    border: 1px solid #ff0606;
+    background-color: #ffffff;
+    align-items: center;
+    border-radius: 16px;
+    padding: 1rem;
+    gap: 0.5rem;
+    color: #222;
+}
+.match-option, .match-option-target {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 60%;
+    height: 20%;
+    gap: 0.5rem;
+    border-radius: 2rem;
+    padding: 1rem;
+}
+.match-option {
+  background-color: #0000001f;
+
+}
+.match-option-target {
+background-color: #00ddff1f;
+}
+.match-option label, .match-option-target label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.match-option input, .match-option-target input {
+    width: 40%;
+    height: 90%;
+    background-color: #0000001f;
+    border-radius: 2rem;
+    padding: .5rem;
+    outline: none;
+    border: none;
+    color: #222;
+}
+
+
+/* Value Options */
+.value-options {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 20%;
+    border: 1px solid #ff0606;
+    background-color: #ffffff;
+    align-items: center;
+    border-radius: 16px;
+    padding: 1rem;
+    gap: 0.5rem;
+    color: #222;
+}
+.value-input {
+    width: 40%;
+    height: 90%;
+    background-color: #0000001f;
+    border-radius: 2rem;
+    padding: .5rem;
+    outline: none;
+    border: none;
+    color: #222;
+}
+
+

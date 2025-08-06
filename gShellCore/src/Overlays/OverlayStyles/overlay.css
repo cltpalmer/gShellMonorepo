@@ -1,0 +1,52 @@
+/* 🧱 Backdrop layer */
+.default-overlay-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.6); /* dark backdrop */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 4000;
+    padding: 2rem;
+    overflow-y: auto; /* allow scroll if modal is tall */
+    font-family: 'Poppins', sans-serif !important;
+  }
+  
+  /* 🪟 Modal card */
+  .default-modal {
+    background: #1e1e1e;
+    color: white;
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 800px;
+    width: 100%;
+    height: 80%;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    font-family: 'Poppins', sans-serif;
+    transition: transform 0.2s ease;
+    transform: scale(0.95);
+    animation: pop-in 0.2s ease forwards;
+    overflow-y: auto;
+  }
+      
+@keyframes pop-in {
+    to {
+      transform: scale(1);
+    }
+  }
+      
+  .default-overlay-container ::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  .default-overlay-container ::-webkit-scrollbar-track {
+    background: #1e1e1e;
+  }
+  
+  .default-overlay-container ::-webkit-scrollbar-thumb {
+    background: #00ff88;
+    border-radius: 6px;
+  }

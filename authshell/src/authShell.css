@@ -1,0 +1,342 @@
+
+.auth-container {
+  height: 95%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;  /* vertical centering */
+  align-items: center;
+  
+}
+.slogan-typewriter {
+  font-family: 'Poppins', sans-serif;
+  font-size: .8rem;
+  margin: 0;
+  font-weight: bold;
+  color: #bdffec;
+  opacity: 1;
+  font-style: italic;
+letter-spacing: .1rem;
+}
+.typewriter::after {
+  content: '|';
+  animation: blink 1s step-start infinite;
+  margin-left: 4px;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.auth-header {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 20%;
+  justify-content: center;
+  justify-items: center;
+}
+  
+  .auth-header h1 {
+    font-size: 4rem;
+    margin: 0;
+    color: #ffffff;
+    opacity: 1;
+
+  }
+  .username-preview {
+    vertical-align: middle;
+    color: #00ff84;
+    font-weight: bold;
+    margin-left: 6px;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    background-color: #0000002f;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(0, 0, 0, 0.43);
+    border-radius: 44px;
+    padding: 2px 9px;
+    font-size: 1.8rem;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .username-preview::after {
+    content: '|';
+    animation: blink 1s infinite;
+    position: absolute;
+    right: -12px;
+    top: 0;
+    color: #ffffff9f;
+  }
+  
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  
+  .auth-header h2 {
+    font-size: 1.5rem;
+    margin: 0.25rem 0;
+    color: #013e1b;
+    opacity: 0;
+  }
+  
+  .auth-header .gshell {
+    color: #00ff95;
+    font-weight: bold;
+  }
+  
+  .auth-header .caret {
+    animation: blink 1s step-start infinite;
+  }
+  
+  .auth-header .tagline {
+    font-style: italic;
+    color: #666;
+    font-size: .81rem;
+  }
+  
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  
+  .card-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  .card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.54);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);  
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 255, 174, 0.621);
+    width: 74%;
+    border: 2px solid #00ff88;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+
+  .cmd-bubble-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30%;  
+    height: 90%; 
+    gap: .61rem;
+}
+  .cmd-icon img {
+    width: 20px;
+    height: 20px;
+  }
+  .cmd-icon {
+    height: 50%;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    cursor: pointer;
+    border: none;
+    z-index: 1;
+   
+    border-radius: 0px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .cmd-icon-ready {
+    background: linear-gradient(135deg, #00ff95, #00e6b8);
+    box-shadow: 0 0 10px #00ff95;
+    transform: scale(1.05);
+  }
+  
+  .cmd-icon-ready {
+    animation: pulseCmd 1.2s infinite ease-in-out;
+  }
+  
+  @keyframes pulseCmd {
+    0%, 100% {
+      background: #00ff95;
+      transform: scale(1);
+    }
+    50% {
+      background: #00e6b8;
+      transform: scale(1.1);
+    }
+  }
+  .cmd-bubble {
+    background: #00ff95;
+    color: #000;
+    border-radius: 16px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 0 8px #00ff95;
+    animation: pulseBubble 1.3s infinite ease-in-out;
+    z-index: 2;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+  }
+  
+  @keyframes pulseBubble {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 6px #00ff95;
+    }
+    50% {
+      transform: scale(1.1);
+      box-shadow: 0 0 12px #00ff95;
+    }
+  }
+  
+  .toggle {
+    display: flex;
+    justify-content: center;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+    width: 70%;
+    height: 30%;
+  }
+  
+  .toggle button {
+    width: 30%;  
+    height: 50%;  
+    border: none;
+    outline: none;
+    border-radius: 48px;
+    background: #eee;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-family: 'Poppins', sans-serif!important;
+    font-size: 1.5rem;
+  }
+  
+  .toggle button.active {
+    background: #00ff95;
+    color: #000;
+    font-weight: bold;
+  }
+  
+
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: 'Poppins', sans-serif!important;
+    padding-top: 1.9rem;
+  }
+    
+  .username-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .email-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .password-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+.forgot-password {
+  font-size: .61rem;
+  color: #333;
+  text-align: center;
+  justify-content: flex-end;
+  align-items: flex-end;
+  align-self: flex-end;
+  margin-right: 4.4rem;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+  .label {
+    font-size: .61rem;
+    color: #333;
+    text-align: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: flex-start;
+    margin-left: 4.4rem;
+  }
+  input[type="email"],
+  input[type="password"],
+  input[type="username"] {
+    margin-bottom: .5rem;
+    padding: 0.5rem;
+    height: .7rem;
+    background-color: #a9ffd2;
+    border: none;
+    border-radius: 36px;
+    font-size: .7rem;
+    transition: box-shadow 0.3s ease;
+    width: 80%;
+    font-family: 'Poppins', sans-serif!important;
+    font-weight: normal;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  input:focus {
+    outline: none;
+    border: 2px solid #1a1a1a;
+  }
+  
+  .submit-btn {
+    background: #00ff95;
+    color: #000;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background: #00e68a;
+  }
+  

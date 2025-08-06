@@ -1,0 +1,63 @@
+        /* Styles for the toggle switch container */
+        .toggle-slider-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .toggle-switch-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .toggle-label {
+            width: 30px;
+            height: 30px;
+                }
+
+        /* Hide the default checkbox input */
+        .hidden-checkbox {
+            display: none; /* Visually hide the actual checkbox */
+        }
+
+        /* Style the label to look like the toggle track */
+        .toggle-slider { /* This is now the label element */
+            display: block; /* Make it a block element to control width/height */
+            width: 60px; /* Width of the toggle track */
+            height: 30px; /* Height of the toggle track */
+            background-color: #292929; /* Default background color (off state) */
+            border-radius: 15px; /* Half of height for rounded ends */
+            position: relative;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out; /* Smooth transition for background */
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+        }
+
+        /* Style the thumb using a pseudo-element of the label */
+        .toggle-slider::before {
+            content: ''; /* Required for pseudo-elements */
+            display: block;
+            width: 26px; /* Width of the thumb */
+            height: 26px; /* Height of the thumb */
+            background-color: #fff; /* White thumb */
+            border-radius: 50%; /* Make it a circle */
+            position: absolute;
+            top: 2px; /* Center vertically (30px - 26px) / 2 = 2px */
+            left: 2px; /* Initial position (off state) */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition for movement and shadow */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for the thumb */
+        }
+
+        /* Styles when the hidden checkbox is checked */
+        .hidden-checkbox:checked + .toggle-slider {
+            background-color: #00ff95; /* Green background when active (on state) */
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2); /* Slightly darker inner shadow */
+        }
+
+        .hidden-checkbox:checked + .toggle-slider::before {
+            transform: translateX(30px); /* Move thumb to the right */
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3); /* Slightly larger shadow when active */
+        }
