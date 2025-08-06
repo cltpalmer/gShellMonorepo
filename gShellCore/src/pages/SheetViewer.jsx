@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { addRow, addColumn } from "../utils/sheetControls";
 import { useNavigate } from 'react-router-dom';
-import { allowedTypes, typeLabels } from "../../../../shared/columnTypes.mjs";
+import { allowedTypes, typeLabels } from "../utils/columnTypes.mjs";
 
 import ColumnSettingsOverlay from "../Overlays/ColumnSettingsOverlay";
 import SmartLinkConfigBox from "../components/SmartLink";
