@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
-import NavBar from '../../../shared/components/navBar';
+import NavBar from './components/navBar'; // Local component
 
 import Dashboard from './pages/Dashboard';
 import AppSheets from './pages/appSheets';
