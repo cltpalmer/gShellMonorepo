@@ -1,5 +1,5 @@
 [build]
-base = "" # Root of monorepo
+base = "" # root of monorepo
 
 [build.environment]
 NODE_VERSION = "18"
@@ -13,3 +13,24 @@ NODE_VERSION = "18"
   for = "/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
+
+# ✅ Each project inside your monorepo
+[[build.projects]]
+  base = "apps/gShell"
+  publish = "apps/gShell/dist"
+  command = "npm run build"
+
+[[build.projects]]
+  base = "apps/authshell"
+  publish = "apps/authshell/dist"
+  command = "npm run build"
+
+[[build.projects]]
+  base = "apps/gShellCore"
+  publish = "apps/gShellCore/dist"
+  command = "npm run build"
+
+[[build.projects]]
+  base = "apps/gShellRelay"
+  publish = "apps/gShellRelay/dist"
+  command = "npm run build"
