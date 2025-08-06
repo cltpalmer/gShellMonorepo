@@ -8,7 +8,7 @@ import SettingsPage from './pages/SettingsPage';
 import './styles/App.css'
 import './utils/toast.css';
 
-import NavBar from '../../../../shared/components/navBar';
+import NavBar from '@shared/components/navBar';
 
 import { Routes, Route } from 'react-router-dom'
 import { showToast } from './utils/toast';
