@@ -3,7 +3,7 @@ import '../styles/settingsPage.css';
 import ProgressBar from '../components/ProgressBar';
 
 import { useState, useEffect } from 'react';
-import { formatMB } from '../utils/helpers';
+import { formatMB } from '../utils/Helpers';
 
 import usernamehandle from '../assets/usernamehandle.svg';
 import password from '../assets/password.svg';
