@@ -13,27 +13,3 @@ NODE_VERSION = "18"
   for = "/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
-
-# ⬇ DEPLOY AUTHSHELL AS A SITE
-[[build.projects]]
-  base = "apps/authshell"
-  publish = "apps/authshell/dist"
-  command = "npm run build"
-
-# ⬇ DEPLOY GSHELL CORE AS A SITE
-[[build.projects]]
-  base = "apps/gShellCore"
-  publish = "apps/gShellCore/dist"
-  command = "npm run build"
-
-# ⬇ DEPLOY GSHELL RELAY AS A SITE
-[[build.projects]]
-  base = "apps/gShellRelay"
-  publish = "apps/gShellRelay/dist"
-  command = "npm run build"
-
-# ⬇ DEPLOY GSHELL MAIN AS A SITE
-[[build.projects]]
-  base = "apps/gShell"
-  publish = "apps/gShell/dist"
-  command = "npm run build"
