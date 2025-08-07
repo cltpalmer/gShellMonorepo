@@ -22,36 +22,44 @@ export default function AuthForm() {
 
   const baseURL = "https://api.gshell.cloud";
 
-  const handleLogin = async () => {
-    setIsLoading(true);
-  
-    try {
-      const res = await fetch(`${baseURL}/user/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include', // 👈 Needed for session cookies
-        body: JSON.stringify({
-          owner: form.username,
-          password: form.password,
-        }),
-      });
-  
-      const json = await res.json();
-      console.log("📡 Login response:", json);
-  
-      if (json.success) {
-        console.log("✅ Session stored, redirecting...");
-      window.location.href = `https://terminal.gshell.cloud`;
-      } else {
-        alert(json.message || "Login failed");
-      }
-    } catch (err) {
-      console.error("Login error:", err);
-      alert("Something went wrong");
-    } finally {
-      setIsLoading(false);
+const handleLogin = async () => {
+  setIsLoading(true);
+
+  // 👇 Check for a redirect_uri in the current URL, or fallback to your default app
+  const redirectUri = new URLSearchParams(window.location.search).get("redirect_uri") 
+    || "https://terminal.gshell.cloud";
+
+  try {
+    // 👇 Send redirect_uri as a query param — server will use it to redirect after login
+    const res = await fetch(`${baseURL}/user/login?redirect_uri=${encodeURIComponent(redirectUri)}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include', // ✅ So session cookie is stored
+      body: JSON.stringify({
+        owner: form.username,
+        password: form.password,
+      }),
+    });
+
+    // If redirect works, browser will change URL, so this part only runs if no redirect happened
+    const json = await res.json();
+    console.log("📡 Login response:", json);
+
+    if (json.success) {
+      // fallback in case server didn't redirect (API client, test env, etc.)
+      window.location.href = redirectUri;
+    } else {
+      alert(json.message || "Login failed");
     }
-  };
+
+  } catch (err) {
+    console.error("Login error:", err);
+    alert("Something went wrong");
+  } finally {
+    setIsLoading(false);
+  }
+};
+
   
   
 
