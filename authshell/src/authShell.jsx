@@ -41,8 +41,11 @@ export default function AuthForm() {
   
       if (json.success) {
         console.log("✅ Session stored, redirecting...");
-      window.location.href = `https://terminal.gshell.cloud`;
-      } else {
+        // Give the cookie time to be set
+        setTimeout(() => {
+          window.location.href = `https://terminal.gshell.cloud`;
+        }, 100);
+      }else {
         alert(json.message || "Login failed");
       }
     } catch (err) {
