@@ -156,17 +156,19 @@ export async function runCommand(commandName, cmdObj, args, apiKey) {
       return [{ type: 'error', text: `❌ ${err.message}` }];
     }
   }
+
+  // 🔒 Logout
   if (commandName === "logOut") {
     try {
       const res = await fetch(`${baseURL}/user/me`, {
         credentials: 'include'
       });
-  
       const json = await res.json();
-      const username = json.owner || "unknown"; // ✅ use `.owner`
-  
+      const username = json.owner || "unknown";
+
       localStorage.removeItem("apiKey");
-  
+      localStorage.removeItem("userAuth");
+
       return [
         { type: "response", text: `👋 Logged out user: ${username}` },
         {
@@ -179,41 +181,43 @@ export async function runCommand(commandName, cmdObj, args, apiKey) {
       return [{ type: "error", text: "❌ Error logging out: " + err.message }];
     }
   }
-  
-  // 🌐 Dynamic fetch
-  
+
+  // 🌐 Dynamic fetch logic
   if (cmdObj.endpoint) {
     try {
+      // 🔁 Replace dynamic keys in endpoint URL
       let endpoint = cmdObj.endpoint;
       const keys = ['{{app}}', '{{sheet}}', '{{id}}', '{{key}}'];
       keys.forEach((k, i) => {
         if (args[i]) endpoint = endpoint.replace(k, args[i]);
       });
-  
+
       const isAddRow = commandName === "addRow";
       const isCreateApp = commandName === "createApp";
       const isCreateSheet = commandName === "createSheet";
       const isRenameApp = commandName === "renameApp";
       const isDeleteField = commandName === "deleteField";
       const isSessionCommand = sessionOnlyCommands.includes(commandName);
-  
+
       const headers = {
         'Content-Type': 'application/json'
       };
-  
+
+      // 🔐 API key protection
       if (!isSessionCommand) {
         if (!apiKey) {
           return [{ type: 'error', text: '❌ Missing API key. Please log in again.' }];
         }
         headers['x-api-key'] = apiKey;
       }
-  
+
       const options = {
         method: (isAddRow || isCreateApp || isCreateSheet) ? 'POST' : 'GET',
         headers,
         credentials: 'include'
       };
-  
+
+      // 🧠 Special body handlers
       if (isAddRow) {
         try {
           const parsedRow = JSON.parse(args[2]);
@@ -221,7 +225,6 @@ export async function runCommand(commandName, cmdObj, args, apiKey) {
         } catch (err) {
           return [{ type: 'error', text: `❌ Invalid row JSON: ${err.message}` }];
         }
-
 
       } else if (isCreateApp) {
         try {
@@ -235,32 +238,41 @@ export async function runCommand(commandName, cmdObj, args, apiKey) {
           return [{ type: 'error', text: `❌ Invalid initial data JSON: ${err.message}` }];
         }
 
-
       } else if (isCreateSheet) {
         const [appName, sheetName] = args;
         const defaultColumns = [
           { name: "task", type: "text" },
           { name: "done", type: "bool" }
         ];
-        options.body = JSON.stringify({
-          sheetName,
-          columns: defaultColumns
-        });
-
+        options.body = JSON.stringify({ sheetName, columns: defaultColumns });
 
       } else if (isDeleteField) {
         options.method = "DELETE";
       }
-      
-      
+
+      // 🧠 Inject tokenAuth query params if available
+      const user = JSON.parse(localStorage.getItem("userAuth") || "{}");
+      if (user.owner && user.loginTime) {
+        const token = btoa(JSON.stringify(user));
+        const url = new URL(endpoint);
+
+        if (!url.searchParams.has("owner")) {
+          url.searchParams.set("owner", user.owner);
+          url.searchParams.set("token", token);
+          endpoint = url.toString();
+        }
+      }
+
+      // 📡 Make the request
       const res = await fetch(endpoint, options);
       const json = await res.json();
-  
+
       const formatted = formatSpecificCMDResponse(commandName, json);
       return formatted || formatResponse(json);
     } catch (err) {
       return [{ type: 'error', text: `❌ Request failed: ${err.message}` }];
     }
   }
+
   return [{ type: 'error', text: `⚠️ No logic defined for "${commandName}"` }];
 }
