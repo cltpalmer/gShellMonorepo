@@ -22,39 +22,44 @@ export default function AuthForm() {
 
   const baseURL = "https://api.gshell.cloud";
 
- const handleLogin = async () => {
-    setIsLoading(true);
-  
-    try {
-      const res = await fetch(`${baseURL}/user/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include', // 👈 Needed for session cookies
-        body: JSON.stringify({
-          owner: form.username,
-          password: form.password,
-        }),
-      });
-  
-      const json = await res.json();
-      console.log("📡 Login response:", json);
-  
-      if (json.success) {
-        console.log("✅ Session stored, redirecting...");
-        // Give the cookie time to be set
-        setTimeout(() => {
-          window.location.href = `https://terminal.gshell.cloud`;
-        }, 100);
-      }else {
-        alert(json.message || "Login failed");
-      }
-    } catch (err) {
-      console.error("Login error:", err);
-      alert("Something went wrong");
-    } finally {
-      setIsLoading(false);
+const handleLogin = async () => {
+  setIsLoading(true);
+
+  try {
+    const res = await fetch(`${baseURL}/user/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include', // Keep for session-based endpoints if needed
+      body: JSON.stringify({
+        owner: form.username,
+        password: form.password,
+      }),
+    });
+
+    const json = await res.json();
+    console.log("📡 Login response:", json);
+
+    if (json.success) {
+      // ✅ Store user data in localStorage
+      localStorage.setItem('userAuth', JSON.stringify({
+        owner: json.owner,
+        email: json.email,
+        loginTime: Date.now()
+      }));
+      
+      console.log("✅ User data stored in localStorage, redirecting...");
+      window.location.href = `https://terminal.gshell.cloud`;
+    } else {
+      alert(json.message || "Login failed");
     }
-  };  
+  } catch (err) {
+    console.error("Login error:", err);
+    alert("Something went wrong");
+  } finally {
+    setIsLoading(false);
+  }
+};
+
   
   
 
