@@ -33,46 +33,103 @@ export default function Terminal({ isDark, setIsDark, toggleCommandOverlay }) {
 
 function getSession() {
   try {
-    const authData = localStorage.getItem('userAuth');
-    console.log("🔍 Checking localStorage:", authData);
+    console.log("🔍 Current URL:", window.location.href);
+    console.log("🔍 Welcome ref current:", welcomedRef.current);
     
-    if (!authData) {
-      setLog(prev => [...prev, { type: 'error', text: '❌ Not logged in' }]);
+    // Check URL parameters first
+    const urlParams = new URLSearchParams(window.location.search);
+    const authParam = urlParams.get('auth');
+    console.log("🔍 Auth param from URL:", authParam);
+    
+    let userData = null;
+    
+    if (authParam) {
+      // Decode from URL and store in localStorage
+      try {
+        userData = JSON.parse(atob(authParam)); // Base64 decode
+        console.log("✅ Decoded user data from URL:", userData);
+        
+        // Store in localStorage for future visits
+        localStorage.setItem('userAuth', JSON.stringify(userData));
+        console.log("✅ Stored in localStorage for future use");
+        
+        // Clean URL (remove auth parameter)
+        const cleanUrl = window.location.pathname;
+        window.history.replaceState({}, document.title, cleanUrl);
+        console.log("✅ Cleaned URL");
+        
+      } catch (decodeError) {
+        console.error("❌ Failed to decode auth parameter:", decodeError);
+        setLog(prev => [...prev, { type: 'error', text: '❌ Invalid login data' }]);
+        return false;
+      }
+    } else {
+      // Check localStorage for returning users
+      const authData = localStorage.getItem('userAuth');
+      console.log("🔍 Checking localStorage:", authData);
+      
+      if (!authData) {
+        console.log("❌ No auth data found in localStorage or URL");
+        setLog(prev => [...prev, { type: 'error', text: '❌ Not logged in' }]);
+        return false;
+      }
+      
+      try {
+        userData = JSON.parse(authData);
+        console.log("📦 User data from localStorage:", userData);
+      } catch (parseError) {
+        console.error("❌ Failed to parse localStorage data:", parseError);
+        localStorage.removeItem('userAuth');
+        setLog(prev => [...prev, { type: 'error', text: '❌ Corrupted session data' }]);
+        return false;
+      }
+    }
+
+    // Validate userData structure
+    if (!userData || !userData.owner || !userData.loginTime) {
+      console.error("❌ Invalid user data structure:", userData);
+      localStorage.removeItem('userAuth');
+      setLog(prev => [...prev, { type: 'error', text: '❌ Invalid session data' }]);
       return false;
     }
 
-    const userData = JSON.parse(authData);
-    console.log("📦 Parsed user data:", userData);
-    
-    // Optional: Check if login is still valid (e.g., within 24 hours)
+    // Optional: Check if login is still valid (24 hours)
     const loginAge = Date.now() - userData.loginTime;
     const maxAge = 24 * 60 * 60 * 1000; // 24 hours
     
     if (loginAge > maxAge) {
+      console.log("⏰ Session expired - age:", Math.round(loginAge / 1000 / 60), "minutes");
       localStorage.removeItem('userAuth');
       setLog(prev => [...prev, { type: 'error', text: '❌ Session expired' }]);
       return false;
     }
 
-    // ✅ Check and set the ref to prevent repeats
+    // ✅ Success - set up user
+    // Check and set the ref to prevent repeat welcome messages
     if (!welcomedRef.current) {
+      console.log("👋 Setting welcome message for:", userData.owner);
       setLog(prev => [
         ...prev,
         { type: 'response', text: `👋 Welcome back, ${userData.owner}` }
       ]);
       welcomedRef.current = true;
+    } else {
+      console.log("👋 Welcome already shown, skipping");
     }
 
+    // Set username state
     setUsername(userData.owner);
+    console.log("✅ User logged in successfully:", userData.owner);
     return true;
 
   } catch (err) {
-    console.error('Error reading auth data:', err);
-    localStorage.removeItem('userAuth');
+    console.error('❌ Unexpected error in getSession:', err);
+    localStorage.removeItem('userAuth'); // Clean up corrupted data
     setLog(prev => [...prev, { type: 'error', text: '❌ Failed to verify session' }]);
     return false;
   }
 }
+
   
 
 
