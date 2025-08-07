@@ -34,6 +34,7 @@ export default function Terminal({ isDark, setIsDark, toggleCommandOverlay }) {
 function getSession() {
   try {
     const authData = localStorage.getItem('userAuth');
+    console.log("🔍 Checking localStorage:", authData);
     
     if (!authData) {
       setLog(prev => [...prev, { type: 'error', text: '❌ Not logged in' }]);
@@ -41,6 +42,7 @@ function getSession() {
     }
 
     const userData = JSON.parse(authData);
+    console.log("📦 Parsed user data:", userData);
     
     // Optional: Check if login is still valid (e.g., within 24 hours)
     const loginAge = Date.now() - userData.loginTime;
@@ -66,12 +68,11 @@ function getSession() {
 
   } catch (err) {
     console.error('Error reading auth data:', err);
-    localStorage.removeItem('userAuth'); // Clean up corrupted data
+    localStorage.removeItem('userAuth');
     setLog(prev => [...prev, { type: 'error', text: '❌ Failed to verify session' }]);
     return false;
   }
 }
-
   
 
 
