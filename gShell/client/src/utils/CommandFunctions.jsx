@@ -245,6 +245,10 @@ export async function runCommand(commandName, cmdObj, args, apiKey) {
         } else if (isDeleteField) {
           options.method = "DELETE";
         }
+
+        // Add this right before the token injection logic
+console.log("userData:", userData);
+console.log("endpoint before:", endpoint);
   
 // 🧠 Inject tokenAuth query params if available
 const userData = JSON.parse(localStorage.getItem("userAuth") || "{}");
@@ -262,7 +266,11 @@ if (!url.searchParams.has("owner")) {
     endpoint = url.toString();
   }
 }
-  
+
+        // Add this after token injection
+console.log("endpoint after:", endpoint);
+
+        
         // 📡 Make the request
         const res = await fetch(endpoint, options);
         const json = await res.json();
