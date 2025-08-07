@@ -141,6 +141,10 @@ export async function runAutomationJob(args, apiKey) {
 
 const sessionOnlyCommands = ["getCurrentUser", "deleteField", "logOut", "getApps", "createApp", "createSheet", "addRow", "deleteRow", "addIntegration", "addAutomation", "renameApp"]; // add more as needed
 
+
+
+
+//Run COMMAND--
 export async function runCommand(commandName, cmdObj, args, apiKey) {
     // 🧪 Built-in static response
     if (cmdObj.response) {
@@ -260,9 +264,9 @@ if (userData.owner && userData.loginTime) {
   }));
   
   const url = new URL(endpoint);
-  if (!url.searchParams.has("user")) {  // ← Change to "user"
-    url.searchParams.set("user", userData.owner);  // ← Change to "user"
-    url.searchParams.set("token", token);
+if (!url.searchParams.has("owner")) {
+  url.searchParams.set("owner", userData.owner);  // ✅ correct key
+  url.searchParams.set("token", token);
     endpoint = url.toString();
   }
 }
