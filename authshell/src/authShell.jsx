@@ -40,14 +40,17 @@ const handleLogin = async () => {
     console.log("📡 Login response:", json);
 
     if (json.success) {
-      // ✅ Store user data in localStorage
-      localStorage.setItem('userAuth', JSON.stringify({
+      // ✅ ADD THIS - Store in localStorage
+      const userData = {
         owner: json.owner,
         email: json.email,
         loginTime: Date.now()
-      }));
+      };
       
-      console.log("✅ User data stored in localStorage:", localStorage.getItem('userAuth'));
+      localStorage.setItem('userAuth', JSON.stringify(userData));
+      console.log("✅ Stored in localStorage:", localStorage.getItem('userAuth'));
+      
+      // Now redirect
       window.location.href = `https://terminal.gshell.cloud`;
     } else {
       alert(json.message || "Login failed");
@@ -59,7 +62,6 @@ const handleLogin = async () => {
     setIsLoading(false);
   }
 };
-
   
   
 
