@@ -142,137 +142,141 @@ export async function runAutomationJob(args, apiKey) {
 const sessionOnlyCommands = ["getCurrentUser", "deleteField", "logOut", "getApps", "createApp", "createSheet", "addRow", "deleteRow", "addIntegration", "addAutomation", "renameApp"]; // add more as needed
 
 export async function runCommand(commandName, cmdObj, args, apiKey) {
-  // 🧪 Built-in static response
-  if (cmdObj.response) {
-    return [{ type: 'response', text: cmdObj.response }];
-  }
-
-  // 🧠 Special automation cases
-  if (commandName.startsWith("addIntegration") || commandName.startsWith("addAutomation")) {
-    try {
-      const result = await runAutomationJob(args, apiKey);
-      return [{ type: 'response', text: result }];
-    } catch (err) {
-      return [{ type: 'error', text: `❌ ${err.message}` }];
+    // 🧪 Built-in static response
+    if (cmdObj.response) {
+      return [{ type: 'response', text: cmdObj.response }];
     }
-  }
-
-  // 🔒 Logout
-  if (commandName === "logOut") {
-    try {
-      const res = await fetch(`${baseURL}/user/me`, {
-        credentials: 'include'
-      });
-      const json = await res.json();
-      const username = json.owner || "unknown";
-
-      localStorage.removeItem("apiKey");
-      localStorage.removeItem("userAuth");
-
-      return [
-        { type: "response", text: `👋 Logged out user: ${username}` },
-        {
-          type: "response",
-          html: true,
-          text: `<script>window.location.href = "${baseURL}:${portMap.gShellAuth}"</script>`
-        }
-      ];
-    } catch (err) {
-      return [{ type: "error", text: "❌ Error logging out: " + err.message }];
-    }
-  }
-
-  // 🌐 Dynamic fetch logic
-  if (cmdObj.endpoint) {
-    try {
-      // 🔁 Replace dynamic keys in endpoint URL
-      let endpoint = cmdObj.endpoint;
-      const keys = ['{{app}}', '{{sheet}}', '{{id}}', '{{key}}'];
-      keys.forEach((k, i) => {
-        if (args[i]) endpoint = endpoint.replace(k, args[i]);
-      });
-
-      const isAddRow = commandName === "addRow";
-      const isCreateApp = commandName === "createApp";
-      const isCreateSheet = commandName === "createSheet";
-      const isRenameApp = commandName === "renameApp";
-      const isDeleteField = commandName === "deleteField";
-      const isSessionCommand = sessionOnlyCommands.includes(commandName);
-
-      const headers = {
-        'Content-Type': 'application/json'
-      };
-
-      // 🔐 API key protection
-      if (!isSessionCommand) {
-        if (!apiKey) {
-          return [{ type: 'error', text: '❌ Missing API key. Please log in again.' }];
-        }
-        headers['x-api-key'] = apiKey;
+  
+    // 🧠 Special automation cases
+    if (commandName.startsWith("addIntegration") || commandName.startsWith("addAutomation")) {
+      try {
+        const result = await runAutomationJob(args, apiKey);
+        return [{ type: 'response', text: result }];
+      } catch (err) {
+        return [{ type: 'error', text: `❌ ${err.message}` }];
       }
-
-      const options = {
-        method: (isAddRow || isCreateApp || isCreateSheet) ? 'POST' : 'GET',
-        headers,
-        credentials: 'include'
-      };
-
-      // 🧠 Special body handlers
-      if (isAddRow) {
-        try {
-          const parsedRow = JSON.parse(args[2]);
-          options.body = JSON.stringify({ row: parsedRow });
-        } catch (err) {
-          return [{ type: 'error', text: `❌ Invalid row JSON: ${err.message}` }];
-        }
-
-      } else if (isCreateApp) {
-        try {
-          const requestBody = {
-            appName: args[0],
-            sheetName: args[1] || null,
-            initialData: args[2] ? JSON.parse(args[2]) : []
-          };
-          options.body = JSON.stringify(requestBody);
-        } catch (err) {
-          return [{ type: 'error', text: `❌ Invalid initial data JSON: ${err.message}` }];
-        }
-
-      } else if (isCreateSheet) {
-        const [appName, sheetName] = args;
-        const defaultColumns = [
-          { name: "task", type: "text" },
-          { name: "done", type: "bool" }
+    }
+  
+    // 🔒 Logout
+    if (commandName === "logOut") {
+      try {
+        const res = await fetch(`${baseURL}/user/me`, {
+          credentials: 'include'
+        });
+        const json = await res.json();
+        const username = json.owner || "unknown";
+  
+        localStorage.removeItem("apiKey");
+        localStorage.removeItem("userAuth");
+  
+        return [
+          { type: "response", text: `👋 Logged out user: ${username}` },
+          {
+            type: "response",
+            html: true,
+            text: `<script>window.location.href = "${baseURL}:${portMap.gShellAuth}"</script>`
+          }
         ];
-        options.body = JSON.stringify({ sheetName, columns: defaultColumns });
-
-      } else if (isDeleteField) {
-        options.method = "DELETE";
+      } catch (err) {
+        return [{ type: "error", text: "❌ Error logging out: " + err.message }];
       }
-
-      // 🧠 Inject tokenAuth query params if available
-      const user = JSON.parse(localStorage.getItem("userAuth") || "{}");
-      if (user.owner && user.loginTime) {
-        const token = btoa(JSON.stringify(user));
-        const url = new URL(endpoint);
-
-        if (!url.searchParams.has("owner")) {
-          url.searchParams.set("owner", user.owner);
-          url.searchParams.set("token", token);
-          endpoint = url.toString();
-        }
-      }
-
-      // 📡 Make the request
-      const res = await fetch(endpoint, options);
-      const json = await res.json();
-
-      const formatted = formatSpecificCMDResponse(commandName, json);
-      return formatted || formatResponse(json);
-    } catch (err) {
-      return [{ type: 'error', text: `❌ Request failed: ${err.message}` }];
     }
+  
+    // 🌐 Dynamic fetch logic
+    if (cmdObj.endpoint) {
+      try {
+        // 🔁 Replace dynamic keys in endpoint URL
+        let endpoint = cmdObj.endpoint;
+        const keys = ['{{app}}', '{{sheet}}', '{{id}}', '{{key}}'];
+        keys.forEach((k, i) => {
+          if (args[i]) endpoint = endpoint.replace(k, args[i]);
+        });
+  
+        const isAddRow = commandName === "addRow";
+        const isCreateApp = commandName === "createApp";
+        const isCreateSheet = commandName === "createSheet";
+        const isRenameApp = commandName === "renameApp";
+        const isDeleteField = commandName === "deleteField";
+        const isSessionCommand = sessionOnlyCommands.includes(commandName);
+  
+        const headers = {
+          'Content-Type': 'application/json'
+        };
+  
+        // 🔐 API key protection
+        if (!isSessionCommand) {
+          if (!apiKey) {
+            return [{ type: 'error', text: '❌ Missing API key. Please log in again.' }];
+          }
+          headers['x-api-key'] = apiKey;
+        }
+  
+        const options = {
+          method: (isAddRow || isCreateApp || isCreateSheet) ? 'POST' : 'GET',
+          headers,
+          credentials: 'include'
+        };
+  
+        // 🧠 Special body handlers
+        if (isAddRow) {
+          try {
+            const parsedRow = JSON.parse(args[2]);
+            options.body = JSON.stringify({ row: parsedRow });
+          } catch (err) {
+            return [{ type: 'error', text: `❌ Invalid row JSON: ${err.message}` }];
+          }
+  
+        } else if (isCreateApp) {
+          try {
+            const requestBody = {
+              appName: args[0],
+              sheetName: args[1] || null,
+              initialData: args[2] ? JSON.parse(args[2]) : []
+            };
+            options.body = JSON.stringify(requestBody);
+          } catch (err) {
+            return [{ type: 'error', text: `❌ Invalid initial data JSON: ${err.message}` }];
+          }
+  
+        } else if (isCreateSheet) {
+          const [appName, sheetName] = args;
+          const defaultColumns = [
+            { name: "task", type: "text" },
+            { name: "done", type: "bool" }
+          ];
+          options.body = JSON.stringify({ sheetName, columns: defaultColumns });
+  
+        } else if (isDeleteField) {
+          options.method = "DELETE";
+        }
+  
+// 🧠 Inject tokenAuth query params if available
+const userData = JSON.parse(localStorage.getItem("userAuth") || "{}");
+if (userData.owner && userData.loginTime) {
+  // Create token with just the auth data
+  const token = btoa(JSON.stringify({
+    owner: userData.owner,
+    loginTime: userData.loginTime
+  }));
+  
+  const url = new URL(endpoint);
+  if (!url.searchParams.has("user")) {  // ← Change to "user"
+    url.searchParams.set("user", userData.owner);  // ← Change to "user"
+    url.searchParams.set("token", token);
+    endpoint = url.toString();
   }
-
-  return [{ type: 'error', text: `⚠️ No logic defined for "${commandName}"` }];
 }
+  
+        // 📡 Make the request
+        const res = await fetch(endpoint, options);
+        const json = await res.json();
+  
+        const formatted = formatSpecificCMDResponse(commandName, json);
+        return formatted || formatResponse(json);
+      } catch (err) {
+        return [{ type: 'error', text: `❌ Request failed: ${err.message}` }];
+      }
+    }
+  
+    return [{ type: 'error', text: `⚠️ No logic defined for "${commandName}"` }];
+  }
