@@ -39,20 +39,15 @@ const handleLogin = async () => {
     const json = await res.json();
     console.log("📡 Login response:", json);
 
-    if (json.success) {
-      // ✅ ADD THIS - Store in localStorage
-      const userData = {
-        owner: json.owner,
-        email: json.email,
-        loginTime: Date.now()
-      };
-      
-      localStorage.setItem('userAuth', JSON.stringify(userData));
-      console.log("✅ Stored in localStorage:", localStorage.getItem('userAuth'));
-      
-      // Now redirect
-      window.location.href = `https://terminal.gshell.cloud`;
-    } else {
+if (json.success) {
+  const userData = btoa(JSON.stringify({
+    owner: json.owner,
+    email: json.email,
+    loginTime: Date.now()
+  })); // Base64 encode for URL safety
+  
+  window.location.href = `https://terminal.gshell.cloud?auth=${userData}`;
+} else {
       alert(json.message || "Login failed");
     }
   } catch (err) {
