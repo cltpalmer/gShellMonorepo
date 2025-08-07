@@ -29,7 +29,7 @@ const handleLogin = async () => {
     const res = await fetch(`${baseURL}/user/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      credentials: 'include', // Keep for session-based endpoints if needed
+      credentials: 'include',
       body: JSON.stringify({
         owner: form.username,
         password: form.password,
@@ -47,7 +47,7 @@ const handleLogin = async () => {
         loginTime: Date.now()
       }));
       
-      console.log("✅ User data stored in localStorage, redirecting...");
+      console.log("✅ User data stored in localStorage:", localStorage.getItem('userAuth'));
       window.location.href = `https://terminal.gshell.cloud`;
     } else {
       alert(json.message || "Login failed");
