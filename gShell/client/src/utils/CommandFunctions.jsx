@@ -207,14 +207,6 @@ export async function runCommand(commandName, cmdObj, args, apiKey) {
           'Content-Type': 'application/json'
         };
   
-        // 🔐 API key protection
-        if (!isSessionCommand) {
-          if (!apiKey) {
-            return [{ type: 'error', text: '❌ Missing API key. Please log in again.' }];
-          }
-          headers['x-api-key'] = apiKey;
-        }
-  
         const options = {
           method: (isAddRow || isCreateApp || isCreateSheet) ? 'POST' : 'GET',
           headers,
