@@ -31,36 +31,47 @@ export default function Terminal({ isDark, setIsDark, toggleCommandOverlay }) {
  const baseURL = "https://api.gshell.cloud";
 
 
-  async function getSession() {
-    try {
-      const res = await fetch(`${baseURL}/user/me`, {
-        credentials: 'include',
-      });
-      const data = await res.json();
-  
-      if (!data.success || !data.owner) {
-        setLog(prev => [...prev, { type: 'error', text: '❌ Not logged in' }]);
-        return false;
-      }
-  
-      // ✅ Check and set the ref to prevent repeats
-      if (!welcomedRef.current) {
-        setLog(prev => [
-          ...prev,
-          { type: 'response', text: `👋 Welcome back, ${data.owner}` }
-        ]);
-        welcomedRef.current = true;
-      }
-  
-      setUsername(data.owner);
-      return true;
-  
-    } catch (err) {
-      setLog(prev => [...prev, { type: 'error', text: '❌ Failed to verify session' }]);
+function getSession() {
+  try {
+    const authData = localStorage.getItem('userAuth');
+    
+    if (!authData) {
+      setLog(prev => [...prev, { type: 'error', text: '❌ Not logged in' }]);
       return false;
     }
+
+    const userData = JSON.parse(authData);
+    
+    // Optional: Check if login is still valid (e.g., within 24 hours)
+    const loginAge = Date.now() - userData.loginTime;
+    const maxAge = 24 * 60 * 60 * 1000; // 24 hours
+    
+    if (loginAge > maxAge) {
+      localStorage.removeItem('userAuth');
+      setLog(prev => [...prev, { type: 'error', text: '❌ Session expired' }]);
+      return false;
+    }
+
+    // ✅ Check and set the ref to prevent repeats
+    if (!welcomedRef.current) {
+      setLog(prev => [
+        ...prev,
+        { type: 'response', text: `👋 Welcome back, ${userData.owner}` }
+      ]);
+      welcomedRef.current = true;
+    }
+
+    setUsername(userData.owner);
+    return true;
+
+  } catch (err) {
+    console.error('Error reading auth data:', err);
+    localStorage.removeItem('userAuth'); // Clean up corrupted data
+    setLog(prev => [...prev, { type: 'error', text: '❌ Failed to verify session' }]);
+    return false;
   }
-  
+}
+
   
 
 
