@@ -246,30 +246,30 @@ export async function runCommand(commandName, cmdObj, args, apiKey) {
           options.method = "DELETE";
         }
 
-        // Add this right before the token injection logic
-console.log("userData:", userData);
-console.log("endpoint before:", endpoint);
-  
-// 🧠 Inject tokenAuth query params if available
-const userData = JSON.parse(localStorage.getItem("userAuth") || "{}");
-if (userData.owner && userData.loginTime) {
-  // Create token with just the auth data
-  const token = btoa(JSON.stringify({
-    owner: userData.owner,
-    loginTime: userData.loginTime
-  }));
-  
-  const url = new URL(endpoint);
-if (!url.searchParams.has("owner")) {
-  url.searchParams.set("owner", userData.owner);  // ✅ correct key
-  url.searchParams.set("token", token);
-    endpoint = url.toString();
-  }
-}
+        // 🧠 Inject tokenAuth query params if available
+        const userData = JSON.parse(localStorage.getItem("userAuth") || "{}");
+        
+        // Debug logs AFTER userData is declared
+        console.log("userData:", userData);
+        console.log("endpoint before:", endpoint);
+        
+        if (userData.owner && userData.loginTime) {
+          // Create token with just the auth data
+          const token = btoa(JSON.stringify({
+            owner: userData.owner,
+            loginTime: userData.loginTime
+          }));
+          
+          const url = new URL(endpoint);
+          if (!url.searchParams.has("owner")) {
+            url.searchParams.set("owner", userData.owner);
+            url.searchParams.set("token", token);
+            endpoint = url.toString();
+          }
+        }
 
-        // Add this after token injection
-console.log("endpoint after:", endpoint);
-
+        // Debug log after token injection
+        console.log("endpoint after:", endpoint);
         
         // 📡 Make the request
         const res = await fetch(endpoint, options);
@@ -283,4 +283,4 @@ console.log("endpoint after:", endpoint);
     }
   
     return [{ type: 'error', text: `⚠️ No logic defined for "${commandName}"` }];
-  }
+}
