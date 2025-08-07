@@ -50,8 +50,8 @@ export default function AuthForm() {
       alert("Something went wrong");
     } finally {
       setIsLoading(false);
-};
-
+    }
+  };  
   
   
 
