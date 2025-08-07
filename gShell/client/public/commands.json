@@ -1,44 +1,44 @@
 {
   "getSheet": {
     "label": "Get Sheet",
-    "endpoint": "http://api.gshell.cloud/user/me"
+    "endpoint": "https://api.gshell.cloud/user/me"
   },
 "getCurrentUser": {
   "label": "Get Current User",
-  "endpoint": "http://api.gshell.cloud/user/me"
+  "endpoint": "https://api.gshell.cloud/user/me"
 },
   "getApps": {
     "label": "List Apps and Sheets",
-    "endpoint": "http://api.gshell.cloud/sheet/list"
+    "endpoint": "https://api.gshell.cloud/sheet/list"
   },
 
   "addRow": {
     "label": "Add Row",
-    "endpoint": "http://api.gshell.cloud/sheet/{{app}}/{{sheet}}/addRow"
+    "endpoint": "https://api.gshell.cloud/sheet/{{app}}/{{sheet}}/addRow"
   },
   "addColumn": {
     "label": "Add Column",
-    "endpoint": "http://api.gshell.cloud/sheet/{{app}}/{{sheet}}/addColumn"
+    "endpoint": "https://api.gshell.cloud/sheet/{{app}}/{{sheet}}/addColumn"
   },
 "createSheet": { 
   "label": "Create Sheet",
-  "endpoint": "http://api.gshell.cloud/sheet/{{app}}/createSheet"
+  "endpoint": "https://api.gshell.cloud/sheet/{{app}}/createSheet"
 },
   "createApp": {
     "label": "Create App",
-    "endpoint": "http://api.gshell.cloud/sheet/createApp"
+    "endpoint": "https://api.gshell.cloud/sheet/createApp"
   },
 "renameApp": {
   "label": "Rename App",
-  "endpoint": "http://api.gshell.cloud/sheet/renameApp"
+  "endpoint": "https://api.gshell.cloud/sheet/renameApp"
 },
   "updateRow": {
     "label": "Update Row",
-    "endpoint": "http://api.gshell.cloud/sheet/{{app}}/{{sheet}}/{{id}}"
+    "endpoint": "https://api.gshell.cloud/sheet/{{app}}/{{sheet}}/{{id}}"
   },
   "deleteField": {
     "label": "Delete Field",
-    "endpoint": "http://api.gshell.cloud/sheet/{{app}}/{{sheet}}/{{id}}?key={{key}}"
+    "endpoint": "https://api.gshell.cloud/sheet/{{app}}/{{sheet}}/{{id}}?key={{key}}"
   },
   "hello": {
     "response": "👋 Hey there! Welcome to gShell."
