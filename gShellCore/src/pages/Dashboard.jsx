@@ -107,12 +107,13 @@ export default function Dashboard() {
     try {
       const authenticatedURL = buildAuthenticatedURL('/sheet/list');
       
-      if (!authenticatedURL) {
-        console.log("❌ No authentication available");
-        alert("Please log in first");
-        window.location.href = 'https://gshell.cloud'; // Adjust to your login page
-        return;
-      }
+// In loadSheets()
+if (!authenticatedURL) {
+  console.log("❌ LOGIN CHECK FAIL: No authentication available in loadSheets");
+  alert("Pauth lease log in first (loadSheets)");
+  window.location.href = 'https://gshell.cloud';
+  return;
+}
 
       console.log("🔐 Making authenticated request to:", authenticatedURL);
 
@@ -141,7 +142,7 @@ export default function Dashboard() {
       console.log("📦 Apps loaded successfully:", json.apps);
 
     } catch (err) {
-      console.error("❌ Load sheets error:", err);
+      console.error("❌ Auth Load sheets error:", err);
       alert("Failed to load apps. Please try again.");
     }
   }
@@ -160,7 +161,7 @@ export default function Dashboard() {
       const authenticatedURL = buildAuthenticatedURL('/sheet/create');
       
       if (!authenticatedURL) {
-        alert("❌ Please log in first");
+        alert("❌Auth Please log in first");
         return;
       }
 
@@ -200,7 +201,7 @@ export default function Dashboard() {
       const authenticatedURL = buildAuthenticatedURL(`/sheet/deleteApp/${selectedApp}`);
       
       if (!authenticatedURL) {
-        alert("❌ Please log in first");
+        alert("❌Auth Please log in first");
         return;
       }
 
@@ -235,10 +236,10 @@ export default function Dashboard() {
       console.log("✅ Valid session found, loading sheets...");
       loadSheets();
     } else {
-      console.log("❌ No valid session found");
-      alert("Please log in first");
-      window.location.href = 'https://gshell.cloud'; // Adjust to your login URL
-    }
+  console.log("❌ LOGIN CHECK FAIL: No valid session found in useEffect");
+  alert("Please log in first (startup check)");
+  window.location.href = 'https://gshell.cloud';
+}
   }, []);
 
   const toggleAppSelection = () => {
@@ -258,7 +259,7 @@ export default function Dashboard() {
     const authenticatedURL = buildAuthenticatedURL(`/${selectedApp}/upload-icon`);
     
     if (!authenticatedURL) {
-      alert("❌ Please log in first");
+      alert("❌ Auth Please log in first");
       return;
     }
     
