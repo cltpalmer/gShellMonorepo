@@ -1,4 +1,3 @@
-// shared/utils/navHelpers.js
 export function openApp(appName) {
   const prodUrlMap = {
     gShellTerminal: 'https://terminal.gshell.cloud',
@@ -12,24 +11,28 @@ export function openApp(appName) {
   if (!url) return alert(`❌ Unknown app: ${appName}`);
 
   if (raw) {
-    const parsed = JSON.parse(raw);  // { owner, loginTime, ... }
-    const encoded = btoa(raw);       // base64(JSON)
+    try {
+      const parsed = JSON.parse(raw);
+      const encoded = btoa(raw);
 
-    const qp = new URLSearchParams({
-      auth:  encoded,        // for getSession() in receiver
-      owner: parsed.owner,   // for backend
-      token: encoded,        // for backend
-    });
+      const qp = new URLSearchParams({
+        auth:  encoded,
+        owner: parsed.owner,
+        token: encoded,
+      });
 
-    url += `?${qp.toString()}`;
-    console.log("🔐 Passing auth →", appName, { owner: parsed.owner });
+      url += `?${qp.toString()}`;
+      console.log("🔐 Passing auth →", appName, { owner: parsed.owner });
+    } catch (e) {
+      console.error("❌ Failed to parse userAuth in sender tab", e);
+    }
   } else {
     console.log("❌ No auth token found for", appName);
   }
 
-  // Show URL in console and popup for debugging
+  // Log in console AND show popup
   console.log("openApp URL →", url);
-  window.alert(`Opening ${appName} with URL:\n\n${url}`);
+  alert(`Opening ${appName} with URL:\n\n${url}`);
 
   window.open(url, '_blank');
 }
