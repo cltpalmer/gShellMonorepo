@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'; // for internal routing if neede
 import { Link } from 'react-router-dom';
 import { createApp } from '../utils/sheetControls';
 import {showToast} from '../components/Toast';
+import { getSession } from '@shared/utils/getSession';
 
 
 import appIcon from '../assets/app.png';
@@ -56,6 +57,9 @@ export default function Dashboard() {
 
 const baseURL = "https://api.gshell.cloud";
 
+  useEffect(() => {
+    getSession(); 
+  }, []);
 
 
   
