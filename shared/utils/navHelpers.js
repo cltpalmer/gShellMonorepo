@@ -1,4 +1,6 @@
 export function openApp(appName) {
+  console.log("🚀 openApp() CALLED with:", appName);
+
   const prodUrlMap = {
     gShellTerminal: 'https://terminal.gshell.cloud',
     gShellCore:     'https://core.gshell.cloud',
