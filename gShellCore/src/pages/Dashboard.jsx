@@ -238,7 +238,6 @@ if (!authenticatedURL) {
     } else {
   console.log("❌ LOGIN CHECK FAIL: No valid session found in useEffect");
   alert("Please log in first (startup check)");
-  window.location.href = 'https://gshell.cloud';
 }
   }, []);
 
