@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { openApp } from '../../../shared/utils/navHelpers'; // adjust path if needed
+import { openApp } from '@shared/utils/navHelpers.js';
 
 import './navBar.css';
 
@@ -130,3 +130,4 @@ function NavBar() {
 }
 
 export default NavBar;
+
