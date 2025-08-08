@@ -12,23 +12,24 @@ export function openApp(appName) {
   if (!url) return alert(`❌ Unknown app: ${appName}`);
 
   if (raw) {
-    const parsed = JSON.parse(raw);          // { owner, loginTime, ... }
-    const encoded = btoa(raw);               // base64(JSON)
+    const parsed = JSON.parse(raw);  // { owner, loginTime, ... }
+    const encoded = btoa(raw);       // base64(JSON)
 
-    // Send BOTH formats:
-    // - auth=...  → Terminal uses this to seed localStorage on that subdomain
-    // - owner & token → Core/Relay backend middleware reads these
     const qp = new URLSearchParams({
-      auth:  encoded,
-      owner: parsed.owner,
-      token: encoded,
+      auth:  encoded,        // for getSession() in receiver
+      owner: parsed.owner,   // for backend
+      token: encoded,        // for backend
     });
-    url += `?${qp.toString()}`;
 
+    url += `?${qp.toString()}`;
     console.log("🔐 Passing auth →", appName, { owner: parsed.owner });
   } else {
     console.log("❌ No auth token found for", appName);
   }
+
+  // Show URL in console and popup for debugging
+  console.log("openApp URL →", url);
+  window.alert(`Opening ${appName} with URL:\n\n${url}`);
 
   window.open(url, '_blank');
 }
