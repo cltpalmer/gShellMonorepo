@@ -1,4 +1,7 @@
 export function openApp(appName) {
+  console.log("✅ openApp CALLED with appName:", appName);
+alert(`DEBUG: openApp called for ${appName}`);
+
   console.log("🚀 openApp() CALLED with:", appName);
 
   const prodUrlMap = {
