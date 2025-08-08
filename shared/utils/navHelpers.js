@@ -15,7 +15,7 @@ export function openApp(appName) {
 
   if (raw) {
     const parsed = JSON.parse(raw);
-    const encoded = btoa(raw);
+    const encoded = btoa(JSON.stringify(parsed));
 
     const qp = new URLSearchParams({
       auth: encoded,
