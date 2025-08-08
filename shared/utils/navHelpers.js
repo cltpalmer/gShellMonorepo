@@ -1,14 +1,24 @@
-// utils/navHelpers.js
-export function openApp(appKey) {
-  const baseUrl = portMap[appKey];
-  if (!baseUrl) {
-    alert(`❌ Unknown app: ${appKey}`);
+// shared/utils/navHelpers.js
+export function openApp(appName) {
+  const prodUrlMap = {
+    gShellTerminal: 'https://terminal.gshell.cloud',
+    gShellCore: 'https://core.gshell.cloud',
+    gShellRelay: 'https://relay.gshell.cloud',
+    gShellAuth: 'https://auth.gshell.cloud',
+  };
+
+  const token = localStorage.getItem('userAuth');
+  let url = prodUrlMap[appName];
+
+  if (!url) {
+    alert(`❌ Unknown app: ${appName}`);
     return;
   }
 
-  // Get userAuth from localStorage
-  const userData = localStorage.getItem('userAuth');
-  const tokenParam = userData ? `?auth=${btoa(userData)}` : '';
+  // Append token if available
+  if (token) {
+    url += `?auth=${encodeURIComponent(token)}`;
+  }
 
-  window.open(`${baseUrl}${tokenParam}`, '_blank');
+  window.open(url, '_blank');
 }
