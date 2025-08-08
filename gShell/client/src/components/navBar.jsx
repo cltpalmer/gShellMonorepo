@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { portMap } from '../utils/portMap';
+import { portMap } from '../../../shared/utils/portMap.js';
+import { openApp } from '../../../shared/utils/navHelpers.js';
+
 
 import './navBar.css';
 
@@ -136,3 +138,4 @@ function NavBar() {
 }
 
 export default NavBar;
+
