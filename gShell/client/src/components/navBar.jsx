@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { portMap } from '../../../shared/utils/portMap.js';
-import { openApp } from '../../../shared/utils/navHelpers.js';
-
+import { openApp } from '../../../shared/utils/navHelpers'; // adjust path if needed
 
 import './navBar.css';
 
@@ -16,7 +14,6 @@ import databaseIcon from './assets/database.png';
 import showIcon from './assets/show.png';
 import exitIcon from './assets/backExit.png';
 
-// 🧠 App icons mapped cleanly
 const iconMap = {
   gShellTerminal: terminalIcon,
   gShellCore: databaseIcon,
@@ -26,7 +23,6 @@ const iconMap = {
   gShellSettings: settingsIcon,
 };
 
-// ✅ Define launchable apps (exclude docs/settings which aren't apps)
 const launchableApps = ['gShellCore', 'gShellRelay', 'gShellTerminal'];
 
 function NavBar() {
@@ -38,7 +34,7 @@ function NavBar() {
       <nav className="left-navbar" style={{ display: navBar ? 'none' : 'flex' }}>
         <div className="gradient-border"></div>
 
-        {/* 🔝 Top nav: Home */}
+        {/* Home */}
         <ul className="nav-section top-nav">
           <li>
             <button className="nav-icon-button" title="Home">
@@ -46,18 +42,16 @@ function NavBar() {
                 src={homeIcon}
                 className="nav-icon"
                 alt="home"
-                onClick={() => window.open(`http://localhost:${portMap.gShellTerminal}`, '_blank')}
+                onClick={() => openApp('gShellTerminal')}
               />
             </button>
           </li>
         </ul>
 
-        {/* 🔄 Middle nav: App Icons (dynamic) */}
+        {/* Apps */}
         <ul className="nav-section middle-nav">
           {launchableApps.map((appName) => {
-            const port = portMap[appName];
             const icon = iconMap[appName] || terminalIcon;
-
             return (
               <li key={appName}>
                 <button className="nav-icon-button" title={appName}>
@@ -65,13 +59,7 @@ function NavBar() {
                     src={icon}
                     className="nav-icon"
                     alt={appName}
-                    onClick={() => {
-                      if (port) {
-                        window.open(`http://localhost:${port}/`, '_blank');
-                      } else {
-                        alert(`❌ Unknown app: ${appName}`);
-                      }
-                    }}
+                    onClick={() => openApp(appName)}
                   />
                 </button>
               </li>
@@ -79,17 +67,17 @@ function NavBar() {
           })}
         </ul>
 
-        {/* 🔚 Bottom nav: Static Sections */}
+        {/* Bottom nav */}
         <ul className="nav-section bottom-nav">
-        <li>
-  <button
-    className="nav-icon-button"
-    title="Integrations"
-    onClick={() => window.open('http://localhost:5174/integrations', '_blank')}
-  >
-    <img src={iconMap.gShellIntegrate} className="nav-icon" alt="Integrations" />
-  </button>
-</li>
+          <li>
+            <button
+              className="nav-icon-button"
+              title="Integrations"
+              onClick={() => window.open('https://core.gshell.cloud/integrations', '_blank')}
+            >
+              <img src={iconMap.gShellIntegrate} className="nav-icon" alt="Integrations" />
+            </button>
+          </li>
 
           <li>
             <button
@@ -100,17 +88,21 @@ function NavBar() {
               <img src={iconMap.gShellDocs} className="nav-icon" alt="docs" />
             </button>
           </li>
+
           <li>
             <button className="nav-icon-button" title="Settings">
-              <img src={iconMap.gShellSettings} className="nav-icon" alt="settings" 
-              onClick={() => window.open('http://localhost:5173/settings', '_blank')}
+              <img
+                src={iconMap.gShellSettings}
+                className="nav-icon"
+                alt="settings"
+                onClick={() => window.open('https://terminal.gshell.cloud/settings', '_blank')}
               />
             </button>
           </li>
         </ul>
       </nav>
 
-      {/* 👉 Right Side Controls */}
+      {/* Right side */}
       <div className="right-navbar">
         <button className="exit-btn" onClick={() => navigate('/')}>
           <img src={exitIcon} alt="exit" />
@@ -138,4 +130,3 @@ function NavBar() {
 }
 
 export default NavBar;
-
