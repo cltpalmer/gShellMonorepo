@@ -77,18 +77,25 @@ export function formatSpecificCMDResponse(command, json) {
     return [{ type: 'response', text: `✅ ${json.message}` }];
   }
 
-  if (command === 'getApps' && typeof json.apps === 'object') {
-    const parts = Object.entries(json.apps).map(([app, sheets]) => {
-      const sheetCount = sheets.length;
-      return `<span style="background: rgba(0, 255, 102, 0.2); padding: 4px 10px; margin: 3px; border-radius: 8px; font-weight: bold; display: inline-block;">${app} (${sheetCount})</span>`;
-    });
-  
-    return [{
-      type: 'response',
-      text: `📁 Apps: ${parts.join(' | ')}`,
-      html: true
-    }];
-  }
+if (command === 'getApps' && typeof json.apps === 'object') {
+  const parts = Object.entries(json.apps).map(([app, sheets]) => {
+    // ✅ Handle both array and object-with-sheets formats
+    const sheetCount = Array.isArray(sheets)
+      ? sheets.length
+      : Array.isArray(sheets?.sheets)
+        ? sheets.sheets.length
+        : 0;
+
+    return `<span style="background: rgba(0, 255, 102, 0.2); padding: 4px 10px; margin: 3px; border-radius: 8px; font-weight: bold; display: inline-block;">${app} (${sheetCount})</span>`;
+  });
+
+  return [{
+    type: 'response',
+    text: `📁 Apps: ${parts.join(' | ')}`,
+    html: true
+  }];
+}
+
 
   return null;
 }
