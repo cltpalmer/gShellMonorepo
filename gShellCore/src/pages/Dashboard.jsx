@@ -44,7 +44,6 @@ export default function Dashboard() {
 // 🧮 Fill out to 5-column grid
   const remainder = filteredCards.length % NUM_COLUMNS;
   const fillersNeeded = remainder === 0 ? 0 : NUM_COLUMNS - remainder;
-  const baseURL = "https://gshell.cloud";
 
   const paddedCards = [
     ...filteredCards,
@@ -55,7 +54,11 @@ export default function Dashboard() {
 ];
 
 
+const baseURL = "https://api.gshell.cloud";
 
+
+
+  
   async function loadSheets() {
     setApps({});
 
