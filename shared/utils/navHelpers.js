@@ -6,33 +6,28 @@ export function openApp(appName) {
     gShellAuth:     'https://auth.gshell.cloud',
   };
 
-  const raw = localStorage.getItem('userAuth'); // JSON string
+  const raw = localStorage.getItem('userAuth');
   let url = prodUrlMap[appName];
   if (!url) return alert(`❌ Unknown app: ${appName}`);
 
   if (raw) {
-    try {
-      const parsed = JSON.parse(raw);
-      const encoded = btoa(raw);
+    const parsed = JSON.parse(raw);
+    const encoded = btoa(raw);
 
-      const qp = new URLSearchParams({
-        auth:  encoded,
-        owner: parsed.owner,
-        token: encoded,
-      });
+    const qp = new URLSearchParams({
+      auth: encoded,
+      owner: parsed.owner,
+      token: encoded,
+    });
 
-      url += `?${qp.toString()}`;
-      console.log("🔐 Passing auth →", appName, { owner: parsed.owner });
-    } catch (e) {
-      console.error("❌ Failed to parse userAuth in sender tab", e);
-    }
+    const finalUrl = `${url}?${qp.toString()}`;
+    console.log("🔐 Passing auth →", appName, finalUrl);
+
+    // 🔔 Popup confirm
+    alert(`Opening ${appName} with auth:\n\n${finalUrl}`);
+
+    window.open(finalUrl, '_blank');
   } else {
-    console.log("❌ No auth token found for", appName);
+    alert(`❌ No auth found for ${appName}`);
   }
-
-  // Log in console AND show popup
-  console.log("openApp URL →", url);
-  alert(`Opening ${appName} with URL:\n\n${url}`);
-
-  window.open(url, '_blank');
 }
