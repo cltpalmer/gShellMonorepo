@@ -1,30 +1,31 @@
-// shared/utils/navHelpers.js - FIXED VERSION
+// shared/utils/navHelpers.js
 export function openApp(appName) {
   const prodUrlMap = {
     gShellTerminal: 'https://terminal.gshell.cloud',
-    gShellCore: 'https://core.gshell.cloud',
-    gShellRelay: 'https://relay.gshell.cloud',
-    gShellAuth: 'https://auth.gshell.cloud',
+    gShellCore:     'https://core.gshell.cloud',
+    gShellRelay:    'https://relay.gshell.cloud',
+    gShellAuth:     'https://auth.gshell.cloud',
   };
 
-  const token = localStorage.getItem('userAuth');
+  const raw = localStorage.getItem('userAuth'); // JSON string
   let url = prodUrlMap[appName];
+  if (!url) return alert(`❌ Unknown app: ${appName}`);
 
-  if (!url) {
-    alert(`❌ Unknown app: ${appName}`);
-    return;
-  }
+  if (raw) {
+    const parsed = JSON.parse(raw);          // { owner, loginTime, ... }
+    const encoded = btoa(raw);               // base64(JSON)
 
-  // Append token if available - FIX: Base64 encode the token
-if (token) {
-  const parsed = JSON.parse(token); // token is JSON string from localStorage
-  const encodedToken = btoa(token); // base64 encode
+    // Send BOTH formats:
+    // - auth=...  → Terminal uses this to seed localStorage on that subdomain
+    // - owner & token → Core/Relay backend middleware reads these
+    const qp = new URLSearchParams({
+      auth:  encoded,
+      owner: parsed.owner,
+      token: encoded,
+    });
+    url += `?${qp.toString()}`;
 
-  url += `?owner=${encodeURIComponent(parsed.owner)}&token=${encodeURIComponent(encodedToken)}`;
-    
-    console.log("🔐 Sending auth to", appName);
-    console.log("📦 Raw token:", token);
-    console.log("🔒 Encoded token:", encodedToken);
+    console.log("🔐 Passing auth →", appName, { owner: parsed.owner });
   } else {
     console.log("❌ No auth token found for", appName);
   }
