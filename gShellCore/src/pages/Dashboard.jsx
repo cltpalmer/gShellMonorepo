@@ -57,9 +57,11 @@ export default function Dashboard() {
 
 const baseURL = "https://api.gshell.cloud";
 
-  useEffect(() => {
-    getSession(); 
-  }, []);
+useEffect(() => {
+  const session = getSession(); 
+  console.log("📌 Session in Core Dashboard:", session);
+}, []);
+
 
 
   
