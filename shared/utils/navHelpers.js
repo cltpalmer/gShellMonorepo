@@ -1,8 +1,6 @@
 export function openApp(appName) {
   console.log("✅ openApp CALLED with appName:", appName);
-alert(`DEBUG: openApp called for ${appName}`);
-
-  console.log("🚀 openApp() CALLED with:", appName);
+  alert(`DEBUG: openApp called for ${appName}`);
 
   const prodUrlMap = {
     gShellTerminal: 'https://terminal.gshell.cloud',
@@ -31,7 +29,8 @@ alert(`DEBUG: openApp called for ${appName}`);
     // 🔔 Popup confirm
     alert(`Opening ${appName} with auth:\n\n${finalUrl}`);
 
-    window.open(finalUrl, '_blank');
+    // 🔄 Open in same tab instead of new
+    window.location.href = finalUrl;
   } else {
     alert(`❌ No auth found for ${appName}`);
   }
