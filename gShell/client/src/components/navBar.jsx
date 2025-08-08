@@ -54,14 +54,18 @@ function NavBar() {
             const icon = iconMap[appName] || terminalIcon;
             return (
               <li key={appName}>
-                <button className="nav-icon-button" title={appName}>
-                  <img
-                    src={icon}
-                    className="nav-icon"
-                    alt={appName}
-                    onClick={() => openApp(appName)}
-                  />
-                </button>
+              <button
+              className="nav-icon-button"
+              title={appName}
+              onClick={() => openApp(appName)}
+            >
+              <img
+                src={icon}
+                className="nav-icon"
+                alt={appName}
+              />
+            </button>
+            
               </li>
             );
           })}
@@ -130,4 +134,3 @@ function NavBar() {
 }
 
 export default NavBar;
-
