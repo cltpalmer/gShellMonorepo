@@ -16,10 +16,11 @@ export function openApp(appName) {
   }
 
   // Append token if available - FIX: Base64 encode the token
-  if (token) {
-    // Your dashboard expects the auth param to be base64 encoded
-    const encodedToken = btoa(token); // Base64 encode the JSON string
-    url += `?auth=${encodeURIComponent(encodedToken)}`;
+if (token) {
+  const parsed = JSON.parse(token); // token is JSON string from localStorage
+  const encodedToken = btoa(token); // base64 encode
+
+  url += `?owner=${encodeURIComponent(parsed.owner)}&token=${encodeURIComponent(encodedToken)}`;
     
     console.log("🔐 Sending auth to", appName);
     console.log("📦 Raw token:", token);
